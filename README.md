@@ -119,7 +119,7 @@
     <p><strong>Email:</strong> jai.jashubai@gmail.com</p>
     <div class="whatsapp-links">
       <a href="https://wa.me/917498277077" target="_blank">Chat with Vinod Patel</a>
-      <a href="https://wa.me/917506310740" target="_blank">Chat with Keyur Patel</a>
+      <a href="https://wa.me/917506310750" target="_blank">Chat with Keyur Patel</a>
     </div>
   </section>  <footer>
     <p>&copy; 2025 Jai Jashubai Accessories and Garments. All rights reserved.</p>
