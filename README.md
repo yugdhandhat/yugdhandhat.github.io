@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jai Jashubai Accessories and Garments</title>
+  <title>Jai Jashubai Garments Accessories </title>
   <link rel="icon" type="image/png" href="jj-icon.png" />
   <style>
     body {
@@ -85,7 +85,7 @@
 <body>
   <header>
     <h1>Jai Jashubai Accessories and Garments</h1>
-    <p>Your one-stop shop for elegant clothing and stylish accessories</p>
+    <p>Your one-stop shop for Stylish garments accessories </p>
   </header>  <nav>
     <a href="#about">About</a>
     <a href="#products">Products</a>
