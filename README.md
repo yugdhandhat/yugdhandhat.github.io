@@ -1,128 +1,57 @@
-
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jai Jashubai Garments Accessories </title>
-  <link rel="icon" type="image/png" href="jj-icon.png" />
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fdfaf6;
-      color: #333;
-    }
-    header {
-      background-color: #ca2e55;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
-    nav {
-      background-color: #a72048;
-      padding: 10px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .container {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    .section-title {
-      font-size: 2em;
-      margin-bottom: 20px;
-      color: #ca2e55;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-    .product {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 15px;
-      text-align: center;
-    }
-    .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .whatsapp-links {
-      margin-top: 20px;
-    }
-    .whatsapp-links a {
-      display: inline-block;
-      margin: 5px 10px;
-      padding: 10px 15px;
-      background-color: #25D366;
-      color: white;
-      border-radius: 5px;
-      text-decoration: none;
-    }
-    .whatsapp-links a:hover {
-      background-color: #1ebe5d;
-    }
-    footer {
-      background-color: #a72048;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
-    }
-  </style>
+  <title>Jai Jashubai Billing</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  <header>
-    <h1>Jai Jashubai Accessories and Garments</h1>
-    <p>Your one-stop shop for Stylish garments accessories </p>
-  </header>  <nav>
-    <a href="#about">About</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
-  </nav>  <section id="about" class="container">
-    <h2 class="section-title">About Us</h2>
-    <p>At Jai Jashubai, we offer a curated collection of high-quality garments and accessories that blend tradition with modern fashion. Whether you're looking for everyday wear or something for a special occasion, we've got you covered.</p>
-  </section>  <section id="products" class="container">
-    <h2 class="section-title">Our Products</h2>
-    <div class="products">
-      <div class="product">
-        <img src="https://via.placeholder.com/200x250" alt="Saree" />
-        <h3>Traditional Sarees</h3>
-        <p>Elegant and timeless designs.</p>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200x250" alt="Kurti" />
-        <h3>Designer Kurtis</h3>
-        <p>Perfect for both casual and festive wear.</p>
-      </div>
-      <div class="product">
-        <img src="https://via.placeholder.com/200x250" alt="Jewelry" />
-        <h3>Fashion Accessories</h3>
-        <p>Statement jewelry and more.</p>
+<body class="bg-gray-100 p-4">
+  <div class="max-w-4xl mx-auto bg-white shadow-md rounded p-6">
+    <div class="flex items-center mb-6">
+      <img src="logo.png" alt="Logo" class="h-16 w-16 mr-4">
+      <h1 class="text-2xl font-bold">Jai Jashubai Garment and Accessories</h1>
+    </div><form id="billForm">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input type="text" name="receiver" placeholder="Receiver Name" class="border p-2 rounded" required />
+    <input type="text" name="contact" placeholder="Contact (Phone or Email)" class="border p-2 rounded" required />
+  </div>
+
+  <div class="mt-4">
+    <label class="block font-semibold mb-2">Items</label>
+    <div id="itemsList" class="space-y-2">
+      <div class="grid grid-cols-4 gap-2">
+        <input type="text" placeholder="Item" class="border p-1 rounded" required>
+        <input type="text" placeholder="Size/Color" class="border p-1 rounded">
+        <input type="number" placeholder="Qty" class="border p-1 rounded" required>
+        <input type="number" placeholder="Price" class="border p-1 rounded" required>
       </div>
     </div>
-  </section>  <section id="contact" class="container">
-    <h2 class="section-title">Contact Us</h2>
-    <p><strong>Address:</strong> 123 Fashion Street, Mumbai, India</p>
-    <p><strong>Phone:</strong> +91 98765 43210</p>
-    <p><strong>Email:</strong> jai.jashubai@gmail.com</p>
-    <div class="whatsapp-links">
-      <a href="https://wa.me/917498277077" target="_blank">Chat with Vinod Patel</a>
-      <a href="https://wa.me/917506310750" target="_blank">Chat with Keyur Patel</a>
-    </div>
-  </section>  <footer>
-    <p>&copy; 2025 Jai Jashubai Accessories and Garments. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+    <button type="button" onclick="addItem()" class="mt-2 text-sm text-blue-600">+ Add Item</button>
+  </div>
+
+  <button type="submit" class="mt-6 bg-blue-600 text-white px-4 py-2 rounded">Create Bill</button>
+</form>
+
+<div id="billPreview" class="mt-10 hidden">
+  <h2 class="text-xl font-bold mb-4">Bill Preview</h2>
+  <div class="border p-4 rounded bg-gray-50">
+    <div id="previewContent"></div>
+    <p class="mt-4 italic text-right">Signed: Jai Jashubai Garment and Accessories</p>
+  </div>
+</div>
+
+  </div>  <script>
+    function addItem() {
+      const list = document.getElementById("itemsList");
+      const div = document.createElement("div");
+      div.className = "grid grid-cols-4 gap-2";
+      div.innerHTML = `
+        <input type="text" placeholder="Item" class="border p-1 rounded" required>
+        <input type="text" placeholder="Size/Color" class="border p-1 rounded">
+        <input type="number" placeholder="Qty" class="border p-1 rounded" required>
+        <input type="number" placeholder="Price" class="border p-1 rounded" required>
+      `;
+      list.appendChild(div);
+    }
+
+    document.getElementById("
