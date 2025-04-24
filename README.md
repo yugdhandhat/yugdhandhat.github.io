@@ -8,9 +8,12 @@
 </head>
 <body class="bg-gray-100 p-4">
   <div class="max-w-4xl mx-auto bg-white shadow-md rounded p-6">
-    <div class="flex items-center mb-6">
-      <img src="logo.png" alt="Logo" class="h-16 w-16 mr-4">
-      <h1 class="text-2xl font-bold">Jai Jashubai Garment and Accessories</h1>
+    <div class="flex items-center justify-between mb-6">
+      <div class="flex items-center">
+        <img src="logo.png" alt="Logo" class="h-16 w-16 mr-4">
+        <h1 class="text-2xl font-bold">Jai Jashubai Garment and Accessories</h1>
+      </div>
+      <button onclick="downloadPDF()" class="bg-green-500 text-white px-4 py-2 rounded">Download Bill</button>
     </div><form id="billForm">
   <input type="hidden" name="billId" id="billId">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -24,8 +27,8 @@
       <div class="grid grid-cols-4 gap-2">
         <input type="text" placeholder="Item" class="border p-1 rounded" required>
         <input type="text" placeholder="Size/Color" class="border p-1 rounded">
-        <input type="number" placeholder="Qty" class="border p-1 rounded" required>
-        <input type="number" placeholder="Price" class="border p-1 rounded" required>
+        <input type="number" step="1" placeholder="Qty" class="border p-1 rounded" required>
+        <input type="number" step="0.01" placeholder="Price" class="border p-1 rounded" required>
       </div>
     </div>
     <button type="button" onclick="addItem()" class="mt-2 text-sm text-blue-600">+ Add Item</button>
@@ -62,8 +65,8 @@
       div.innerHTML = `
         <input type="text" placeholder="Item" class="border p-1 rounded" required>
         <input type="text" placeholder="Size/Color" class="border p-1 rounded">
-        <input type="number" placeholder="Qty" class="border p-1 rounded" required>
-        <input type="number" placeholder="Price" class="border p-1 rounded" required>
+        <input type="number" step="1" placeholder="Qty" class="border p-1 rounded" required>
+        <input type="number" step="0.01" placeholder="Price" class="border p-1 rounded" required>
       `;
       list.appendChild(div);
     }
@@ -80,7 +83,7 @@
         return {
           name: inputs[0].value,
           size: inputs[1].value,
-          qty: parseInt(inputs[2].value),
+          qty: parseFloat(inputs[2].value),
           price: parseFloat(inputs[3].value),
         };
       });
@@ -98,7 +101,7 @@
       bill.items.forEach(item => {
         const itemTotal = item.qty * item.price;
         total += itemTotal;
-        html += `<tr><td>${item.name}</td><td>${item.size}</td><td>${item.qty}</td><td>${item.price}</td><td>${itemTotal}</td></tr>`;
+        html += `<tr><td>${item.name}</td><td>${item.size}</td><td>${item.qty}</td><td>₹${item.price.toFixed(2)}</td><td>₹${itemTotal.toFixed(2)}</td></tr>`;
       });
       html += `</tbody></table><p class='mt-4 font-bold'>Grand Total: ₹${total.toFixed(2)}</p>`;
       document.getElementById("previewContent").innerHTML = html;
@@ -137,8 +140,8 @@
         div.innerHTML = `
           <input type="text" value="${item.name}" class="border p-1 rounded" required>
           <input type="text" value="${item.size}" class="border p-1 rounded">
-          <input type="number" value="${item.qty}" class="border p-1 rounded" required>
-          <input type="number" value="${item.price}" class="border p-1 rounded" required>
+          <input type="number" value="${item.qty}" step="1" class="border p-1 rounded" required>
+          <input type="number" value="${item.price}" step="0.01" class="border p-1 rounded" required>
         `;
         itemsList.appendChild(div);
       });
