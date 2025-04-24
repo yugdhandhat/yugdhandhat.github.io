@@ -54,4 +54,33 @@
       list.appendChild(div);
     }
 
-    document.getElementById("
+    document.getElementById("billForm").onsubmit = function (e) {
+      e.preventDefault();
+      const form = new FormData(this);
+      const receiver = form.get("receiver");
+      const contact = form.get("contact");
+
+      const items = Array.from(document.querySelectorAll("#itemsList > div")).map(div => {
+        const inputs = div.querySelectorAll("input");
+        return {
+          name: inputs[0].value,
+          size: inputs[1].value,
+          qty: parseInt(inputs[2].value),
+          price: parseFloat(inputs[3].value),
+        };
+      });
+
+      let total = 0;
+      let html = `<p><strong>Receiver:</strong> ${receiver}</p><p><strong>Contact:</strong> ${contact}</p><table class='w-full mt-4 text-sm'><thead><tr><th>Item</th><th>Size/Color</th><th>Qty</th><th>Price</th><th>Total</th></tr></thead><tbody>`;
+      items.forEach(item => {
+        const itemTotal = item.qty * item.price;
+        total += itemTotal;
+        html += `<tr><td>${item.name}</td><td>${item.size}</td><td>${item.qty}</td><td>${item.price}</td><td>${itemTotal}</td></tr>`;
+      });
+      html += `</tbody></table><p class='mt-4 font-bold'>Grand Total: ₹${total.toFixed(2)}</p>`;
+
+      document.getElementById("previewContent").innerHTML = html;
+      document.getElementById("billPreview").classList.remove("hidden");
+    }
+  </script></body>
+</html>
