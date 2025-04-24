@@ -18,7 +18,7 @@
   <input type="hidden" name="billId" id="billId">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <input type="text" name="receiver" placeholder="Receiver Name" class="border p-2 rounded" required />
-    <input type="text" name="contact" placeholder="Contact (Phone or Email)" class="border p-2 rounded" required />
+    <input type="text" name="contact" placeholder="WhatsApp Number (with country code)" class="border p-2 rounded" required />
   </div>
 
   <div class="mt-4">
@@ -157,10 +157,23 @@
     }
 
     function sendWhatsApp() {
-      const content = document.getElementById("previewContent").innerText;
-      const msg = encodeURIComponent(content);
+      const receiver = document.querySelector("input[name='receiver']").value;
       const contact = document.querySelector("input[name='contact']").value;
-      window.open(`https://wa.me/${contact}?text=${msg}`, "_blank");
+      const items = Array.from(document.querySelectorAll("#itemsList > div"));
+      let msg = `Jai Jashubai Garment & Accessories Bill%0AReceiver: ${receiver}%0A`;
+      let total = 0;
+
+      items.forEach(div => {
+        const [name, size, qty, price] = div.querySelectorAll("input");
+        const qtyVal = parseFloat(qty.value);
+        const priceVal = parseFloat(price.value);
+        const subtotal = qtyVal * priceVal;
+        total += subtotal;
+        msg += `• ${name.value} (${size.value}) x${qtyVal} @₹${priceVal.toFixed(2)} = ₹${subtotal.toFixed(2)}%0A`;
+      });
+
+      msg += `%0AGrand Total: ₹${total.toFixed(2)}%0AThank you!`;
+      window.open(`https://wa.me/${contact}?text=${msg}`, '_blank');
     }
   </script></body>
 </html>
